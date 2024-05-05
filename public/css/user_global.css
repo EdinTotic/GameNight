@@ -1,0 +1,222 @@
+.dash_container {
+    padding-top: 1rem;
+    grid-template-columns: auto;
+    height: 450px;
+    background-image: url("../images/hero.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 70vH;
+    padding-bottom: 5rem;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+}
+
+h1 {
+    align-items: center;
+    font-family: "Jersey 15", sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 0 0 10px #687EFF, 0 0 20px #687EFF, 0 0 30px #687EFF,
+    0 0 40px #687EFF, 0 0 50px #687EFF, 0 0 60px #687EFF, 0 0 70px #687EFF;
+}
+
+.card {
+    width: 90%;
+    height: 254px;
+    border-radius: 4px;
+    background: #212121;
+    opacity: 0.3; 
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: auto;
+    padding: .4em;
+    transition: 1s;
+  }
+
+  .card:hover {
+    opacity: 1;
+  }
+  
+  .card a {
+    height: 100%;
+    flex: 1;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all .5s;
+    background: #212121;
+    border: 1px solid #ff5a91;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff568e;
+    text-decoration: none;
+  }
+  
+  .card a:hover {
+    flex: 4;
+  }
+  
+  .card p span {
+    min-width: 14em;
+    padding: .5em;
+    text-align: center;
+    transform: rotate(-90deg);
+    transition: all .5s;
+    text-transform: uppercase;
+    color: #ff568e;
+    letter-spacing: .1em;
+  }
+  
+  .card p:hover span {
+    transform: rotate(0);
+  }
+
+
+ 
+/* infinite slider */
+
+.container {
+  overflow: hidden;
+  position: relative;
+  height: 30rem;
+  background-color: black;
+}  
+
+.slider {
+  margin: auto;
+  height: 80%;
+  position: absolute;
+  width: fit-content;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.slide-track {
+  display: flex;
+  width: calc(450px * 18);
+  animation: scroll 40s linear infinite;
+}
+.slide-track:hover {
+  animation-play-state: paused;
+  overflow: hidden;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-450px * 9));
+  }
+}
+
+.slide {
+  width: 450px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  /* padding: 15px;
+  perspective: 100px; */
+}
+
+img {
+  width: 100%;
+  height: 280px;
+  background-position: bottom;
+  transition: transform 1%;
+  box-shadow: inset 0px 0px 30px 30px rgba(0, 0, 0, 9);
+  z-index: 1; /* Standard-Z-Index-Wert */
+}
+
+.slide:hover {
+  transform: translateZ(30px) scale(1.2); /* Hier wird das Bild größer */
+  box-shadow: inset 0px 0px 30px 30px rgba(0, 0, 0, 9);
+  z-index: 2; /* Setze einen höheren Z-Index-Wert beim Hover */
+}
+
+/* GRADIENT SHADOWS */
+
+.slider::before,
+.slider::after {
+  background: linear-gradient(
+    to right,
+    rgb(14, 14, 14) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  content: "";
+  /* height: 500px; */
+  position: absolute;
+  width: 15%;
+}
+
+.slider::before {
+  left: 0;
+  top: 0;
+}
+
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+
+
+  @media (min-width: 768px) {
+    .dash_container {
+      position: relative;
+      height: 100vH;
+  }
+    .card {
+      position: absolute;
+      top: 15rem;
+      right: 0;
+      width: 30rem;
+    }
+    .text {
+      position: absolute;
+      top: 5rem;
+      align-items: center;
+      width: 100%;
+    }
+}
+
+
+  @media (min-width: 1024px) {
+    .dash_container {
+      position: relative;
+      height: 100vH;
+      align-items: center;
+  }
+    .card {
+      position: absolute;
+      top: 15rem;
+      right: 0;
+      width: 40rem;
+    }
+    
+    .card:hover {
+      top: 15rem;
+      width: 80%;
+      height: 50%;
+      margin-right: 9rem;
+    }
+    .text {
+      position: absolute;
+      top: 5rem;
+      align-items: center;
+      width: 100%;
+    }
+  }
+ 

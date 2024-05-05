@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('css/user_global.css')}}">
+<link rel="stylesheet" href="{{ asset('css/user_gn_participates.css' ) }}">
+{% endblock %}
+{% block body %}
+<div class="dash_container">
+    <div class="text">
+        <h1>Oh, Hello {{username}}!</h1>
+    </div>
+    
+    <div class="card">
+        <a href="{{path('app_user_index')}}" class="active">
+        <span>Dashboard</span></a>
+        <a href="{{path('app_user_gamenights')}}#profile">
+           <span>My Gamenights</span></a>
+        <a href="{{path('app_user_gamenights_part')}}#part"> <span>Attended Gamenights</span></a>
+        <a href="{{path('app_user_invites')}}#invite"><span>Invites</span></a>
+        <a href="{{path('app_user_change_pw')}}#pw"><span>Change Password</span></a>
+        <a href="{{path('app_user_edit')}}#edit"><span>Edit Account</span></a>
+    </div>
+</div>
+<div class="container" id="part">
+    <div class="gamenight_details">
+
+        <h3>Attended Gamenights</h3>
+        <table>
+            <tbody>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tbody>
+            {% for gn in user_game_nights %}
+            <tbody>
+                <td>{{gn.id}}</td>
+                <td>{{gn.date | date("d.m.Y, H:i")}}</td>
+                <td>{{gn.location}}</td>
+                <td>
+                    <a href="../gamenight/{{gn.id}}">View</a>
+                </td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% set path_name = path('app_user_gamenights')|split("/") %}
+
+{% if path_name[2] == "my-game-nights" %}
+<script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            let el = document.getElementById("part");
+            if(el){
+
+                window.scrollTo({
+                    top: el.offsetHeight,
+                    behavior: 'smooth'
+                })
+                //location.href = "#profile"
+            }
+        });
+    </script>
+{% endif %}
+
+{% endblock %}

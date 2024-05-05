@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Snacks{% endblock %}
+
+{% block body %}
+    <h1>Create new Snacks</h1>
+
+    {{ include('snacks/_form.html.twig') }}
+
+    <a href="{{ path('app_snacks_index') }}">back to list</a>
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/snacks_form.js') }}"></script>
+{% endblock %}
+
+{% endblock %}

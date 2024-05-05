@@ -1,0 +1,106 @@
+<!-- navbar -->
+
+<header>
+  {% if is_granted("IS_AUTHENTICATED") %}
+  <nav>
+    <div class="navbar">
+      <img src="../images/navbar_footer/logo.jpg" alt="Logo" class="logo">
+      <div class="navbar-links">
+        <a href="{{path("app_home")}}" class="navbar-link">Home</a>
+        <a href="{{path("app_gamenight_new")}}" class="navbar-link">Host Game</a>
+        <a href="{{path("app_statistics")}}" class="navbar-link">Statistics</a>
+      </div>
+      <div class="navbar-menu">
+        <a class="menu-link">Menu
+        </a>
+      </div>
+      <!-- Dropdown Menu -->
+      <div class="dropdown-menu" id="dropdown-menu">
+        <a href="{{path('app_user_index')}}" class="dropdown-link link-user">{{username}}</a>
+        <a href="{{path("app_gamenight_index")}}" class="dropdown-link">Gamenights</a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <li>
+          <a href="{{path("app_logout")}}" class="dropdown-link">Logout</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="{{path("app_login")}}" class="dropdown-link">Login</a>
+        </li>
+        <li>
+          <a href="{{path("app_register")}}" class="dropdown-link">Register</a>
+        </li>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+  {% else %}
+    <nav>
+      <div class="navbar">
+        <img src="../images/navbar_footer/logo.jpg" alt="Logo" class="logo">
+        <div class="navbar-links">
+          <a href="{{path("app_home")}}" class="navbar-link">Home</a>
+          <a href="{{path("app_login")}}" class="navbar-link">Login</a>
+          <a href="{{path("app_register")}}" class="navbar-link">Register</a>
+        </div>
+        <div class="navbar-menu">
+          <a class="menu-link">Menu
+          </a>
+        </div>
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu" id="dropdown-menu">
+          <a href="#" class="dropdown-link link-user">Info</a>
+          <a href="#" class="dropdown-link">Contact</a>
+          <a href="#" class="dropdown-link">Shop</a>
+          <a href="#" class="dropdown-link">FAQ</a>
+        </div>
+      </div>
+    </nav>
+        
+  {% endif %}
+          
+       
+  
+  
+  </header>
+  <script>
+    window.addEventListener('load', function() {
+      const menuButton = document.querySelector('.menu-link');
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+      const nav = document.querySelector(".navbar");
+  
+      if(document.body.getBoundingClientRect().width < 700){
+        menuButton.innerHTML = "<i class='fa-solid fa-bars fa-xl'></i>";
+      }else {
+        menuButton.innerHTML = "Menu";
+        
+      }
+  
+      menuButton.addEventListener('click', function() {
+        dropdownMenu.classList.toggle('show');
+        console.log("click");
+  
+      document.addEventListener('click', function(event) {
+        if (!nav.contains(event.target)) {
+          console.log('Button wurde geklickt');
+          dropdownMenu.classList.remove('show');
+        }
+      });
+      });
+  
+      // Schließen des Dropdown-Menüs, wenn außerhalb davon geklickt wird
+    });
+  
+  
+    window.addEventListener('resize', function() {
+      const menuButton = document.querySelector('.menu-link');
+  
+      if(document.body.getBoundingClientRect().width < 700){
+        menuButton.innerHTML = "<i class='fa-solid fa-bars fa-xl'></i>";
+      }else {
+        menuButton.innerHTML = "Menu";
+        
+      }
+  
+    });
+  </script>
+  

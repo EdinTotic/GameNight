@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block javascript %}
+<script type="module">
+$(document).ready(function () {
+   google.maps.event.addDomListener(window, 'load', initialize);
+});
+
+function initialize() {
+    var input = document.getElementById('nearby');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+}
+</script>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/gamenight_index.css') }}">
+{% endblock %}
+
+{% block title %}Gamenight index{% endblock %}
+
+{% block body %}
+<div class="hero">
+    <h1>Gamenight Overview</h1>
+    <div class="sl-tag-form">
+        <form method="get" action="">
+            <div>
+                <input type="text" name="search_loc" placeholder="Search for near gamenights" id="nearby">
+                <input type="submit" value="Search" name="search_location">
+            </div>
+        </form>
+        <form method="get" action="/gamenight/search">
+            <div>
+                <input type="text" name="search" placeholder="Search for tag" id="">
+                <input type="submit" value="Search" name="search_tag">
+            </div>
+        </form>
+    </div>
+
+
+    {% if (gamenights) %}
+    <div class="gn_overview">
+        {% for gamenight in gamenights %}
+
+        <ul class="tilesWrap">
+            <li>
+                <h2>{{ gamenight.gnName }}</h2>
+                <img src="{{ asset('uploads/' ~ gamenight.gnImage) }}" alt="Gamenight Image" class="event-image">
+
+                <p>{{ gamenight.date ? gamenight.date|date('d.m.Y H:i') : '' }}
+                </p>
+                <p>We will play </p>
+                <h3>{{ gamenight.getFkGameId().name }}</h3>
+                {% if (gamenight.dist is not empty) %}
+                    {% if(gamenight.dist == 0) %}
+                    <p>du bist schon da!</p>
+                    {% else %}
+                    <p>Distance: {{ gamenight.dist }} measures</p>
+                    {% endif %}
+                {% endif %}
+                <p>
+                    At: {{ gamenight.location }}
+                </p>
+                <button><a href="{{ path('app_gamenight_show', {'id': gamenight.id}) }}">View</a></button>
+            </li>
+        </ul>
+
+        <script>
+            jQuery(document).ready(function ($) {
+                function heading_position() {
+                    let padding = 100;
+                    $('.tilesWrap h2').each(function () {
+                        $(this).css('top', padding - $(this).height())
+                    })
+                }
+                heading_position();
+                $(window).resize(function () {
+                    heading_position();
+                })
+            })
+        </script>
+
+
+        {% endfor %}
+
+    </div>
+    {% else %}
+
+    <div class="sl-notfound">
+        <p>No records found</p>
+        <script>
+            jQuery(document).ready(function ($) {
+                function changeHeight() {
+                    let header = 56;
+                    let footer = 110;
+                    let heading = 93;
+                    let form = 42.5;
+                    console.log(heading);
+                    console.log(form);
+                    $('.sl-notfound').height($(window).height() - header - footer - heading - form - 132);
+                }
+                changeHeight();
+                $(window).resize(function () {
+                    changeHeight();
+                })
+
+            })
+        </script>
+    </div>
+
+    {% endif %}
+
+</div>
+{# <ul class="tilesWrap">
+    <button><a href="{{ path('app_gamenight_new') }}">Create new</a></button>
+</ul> #}
+{% endblock %}

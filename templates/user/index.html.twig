@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('css/user_global.css')}}">
+{% endblock %}
+{% block body %}
+<div class="dash_container">
+  <div class="text">
+    <h1>Oh, Hello {{username}}!</h1>
+      {# <img src="{{ asset('uploads/' ~ user.user_image) }}" alt="User Image" class="event-image"></div> #}
+
+  </div>
+
+    <div class="card">
+        <a href="{{path('app_user_index')}}" class="active">
+        <span>Dashboard</span></a>
+        <a href="{{path('app_user_gamenights')}}#profile">
+           <span>My Gamenights</span></a>
+        <a href="{{path('app_user_gamenights_part')}}#part"> <span>Attended Gamenights</span></a>
+        <a href="{{path('app_user_invites')}}#invite"><span>Invites</span></a>
+        <a href="{{path('app_user_change_pw')}}#pw"><span>Change Password</span></a>
+        <a href="{{path('app_user_edit')}}#edit"><span>Edit Account</span></a>
+    </div>
+
+</div>
+
+</div>
+<div class="container">
+  <div class="slider">
+    <div class="slide-track">
+
+      {% for gn in gamenights %}
+      <div class="slide">
+        <a href="../gamenight/{{gn.id}}">
+          <img class="img" src="{{ asset('uploads/' ~ gn.gnImage) }}" alt="" />
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

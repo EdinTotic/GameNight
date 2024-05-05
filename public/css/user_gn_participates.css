@@ -1,0 +1,101 @@
+.container {
+    padding: 2rem;
+    background-color: #000;
+    color: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+.gamenight_details {
+    box-shadow: -2px 3px 4px 1px rgba(254, 211, 135, 0.75);
+    width: 90%;
+}
+.gamenight_details h3 {
+    font-size: 2rem;
+    text-align: center;
+    font-family: "Jersey 15", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 1rem;
+    letter-spacing: 1px;
+    color: rgba(254, 211, 135);
+}
+
+
+
+table {
+    padding: 2rem;
+    color: white;
+    width: 100%;
+}
+tbody {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
+tr {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 3rem;
+}
+td {
+    font-size: 1rem;
+}
+form {
+    width: 5rem;
+}
+
+td a {
+    margin: 10px;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    background: rgb(255, 255, 255);
+    color: blueviolet;
+    border-radius: .5rem;
+    border-bottom: 2px solid blueviolet;
+    border-right: 2px solid blueviolet;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    transition-duration: 1s;
+    transition-property: border-top,
+    border-left,
+    border-bottom,
+    border-right,
+    box-shadow;
+    font-family: "Lugrasimo", cursive;
+    font-weight: 400;
+    font-style: normal;
+}           
+    
+td a:hover {
+    border-top: 2px solid blueviolet;
+    border-left: 2px solid blueviolet;
+    border-bottom: 2px solid rgb(238, 103, 238);
+    border-right: 2px solid rgb(238, 103, 238);     box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(254,211,135,1) 15px 15px;
+        
+} 
+
+
+
+@media (min-width: 768px) {
+
+    td {
+        font-size: 1.5rem;
+     }
+}
+
+@media (min-width: 1024px) {
+
+    td {
+        font-size: 1.5rem;
+     }
+}

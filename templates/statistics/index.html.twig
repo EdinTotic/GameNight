@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StatisticsController!{% endblock %}
+{% block javascripts %}{% block importmap %}{{ importmap('app') }}{% endblock %}{% endblock %}
+{% block body %}
+<style>
+    .sl-container-chart {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        margin-bottom: 2rem;
+
+        .chart {
+            width: 50%;
+        }
+
+        .sl-text-chart {
+            width: 50%;
+            padding: 2rem;
+
+            p {
+                color: #fff;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            h3 {
+                font-family: "Jersey 15", sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+                margin-bottom: 0.5rem;
+                color: rgb(254, 211, 135);
+            }
+        }
+    }
+
+    .sl-container-chart-reverse {
+        flex-direction: row-reverse;
+    }
+
+    @media (max-width:767px) {
+        .sl-container-chart {
+            flex-direction: column;
+        }
+
+        .sl-container-chart .sl-container-chart-reverse {
+            flex-direction: column-reverse;
+        }
+
+        .sl-container-chart .chart {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .sl-container-chart .sl-text-chart {
+            width: 90%;
+            margin: 0 auto;
+        }
+    }
+</style>
+<div style="padding: 100px 0; background-color:rgb(0, 0, 0);">
+    <div class="sl-container-chart">
+        <div class="sl-text-chart">
+            <h3>Your favourite games</h3>
+            <p>
+Welcome to our Game Statistics, the ultimate destination for hosts looking to elevate their game night experiences! Dive into a world of interactive entertainment and social bonding as we unveil the top picks for games.
+
+From classic board games to lively party favorites, our page showcases the most beloved games chosen by hosts like you. Whether you're planning a cozy gathering with friends or a larger-than-life party, we've got you covered with games that guarantee laughter and fun.
+            </p>
+        </div>
+        <div class="chart">
+            {{ render_chart(gamechart) }}
+        </div>
+    </div>
+    <div class="sl-container-chart sl-container-chart-reverse">
+        <div class="sl-text-chart">
+            <h3>Your favourite snacks</h3>
+            <p>
+
+"Welcome to our Snack Statistics, your go-to destination for discovering the most beloved treats among our community! Indulge in the satisfaction of knowing what snacks reign supreme among fellow enthusiasts.
+
+From classic potato chips to decadent chocolate bars, this page showcases the top favorites based on user preferences and engagement. Whether you're a sweet tooth or a savory snacker, there's something here for every palate.
+            </p>
+        </div>
+        <div class="chart">
+            {{ render_chart(snackchart) }}
+        </div>
+    </div>
+    <div class="sl-container-chart">
+        <div class="sl-text-chart">
+            <h3>Your favourite hosts</h3>
+            <p>
+Welcome to our Game Night Host Statistics, the ultimate destination for our community looking to elevate their game night experiences! Dive into a world of interactive entertainment and social bonding as we unveil the top picks for game night hosts.
+
+            </p>
+        </div>
+        <div class="chart">
+            {{ render_chart(hostchart) }}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

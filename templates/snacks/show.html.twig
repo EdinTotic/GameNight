@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Snacks{% endblock %}
+
+{% block body %}
+    <h1>Snacks</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ snack.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ snack.name }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ snack.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_snacks_index') }}">back to list</a>
+
+    <a href="{{ path('app_snacks_edit', {'id': snack.id}) }}">edit</a>
+
+    {{ include('snacks/_delete_form.html.twig') }}
+{% endblock %}

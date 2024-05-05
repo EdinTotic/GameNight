@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>
+    {% block title %}Welcome!
+    {% endblock %}
+  </title>
+  <link rel="stylesheet" href="{{ asset('css/shared.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/global.css' ) }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCra3nOT8dDv0eJdkjrSFvs34V6KpZ-YSo&libraries=places"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+  {% block stylesheets %}{% endblock %}
+  {% block javascripts %}{% endblock %}
+</head>
+
+<body>
+  {# navbar #}
+  {% include "components/navbar.html.twig" %}
+  {% block body %}{%
+  endblock %}
+  <footer>
+    <div class="footer">
+      <div class="footer-top">
+        <a href="#" class="footer-link">Contact</a>
+        <a href="#" class="footer-link">Imprint</a>
+        <a href="#" class="footer-link">About</a>
+      </div>
+
+      <div class="footer-bottom">
+        <a href="#" class="footer-link">
+          <i class="fa-brands fa-square-facebook"></i>
+        </a>
+        <a href="#" class="footer-link">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="#" class="footer-link">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="#" class="footer-link">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+  {% block javascript %}
+  {% endblock %}
+
+</body>
+
+</html>

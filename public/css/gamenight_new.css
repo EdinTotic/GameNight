@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Lugrasimo&display=swap');
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vH;
+    padding: 20px;
+    background-color: #1c1c1c; 
+    color: #fff;
+    background-image: url("../images/gamenight/gamenight_new.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.jersey-15-regular {
+    font-family: "Jersey 15", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.custom-width {
+    width: 60%;
+    text-align: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.form-container {
+    width: 80%;
+    position: absolute;
+    top: 10rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+form {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;   
+}
+
+#gamenight {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.btn {
+    margin: 10px;
+    padding: 1rem 2rem;
+    background: rgb(255, 255, 255);
+    color: blueviolet;
+    border-radius: .5rem;
+    border-bottom: 2px solid blueviolet;
+    border-right: 2px solid blueviolet;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    transition-duration: 1s;
+    transition-property: border-top,
+    border-left,
+    border-bottom,
+    border-right,
+    box-shadow;
+    font-weight: 700;
+}           
+
+.btn:hover {
+    border-top: 2px solid blueviolet;
+    border-left: 2px solid blueviolet;
+    border-bottom: 2px solid rgb(238, 103, 238);
+    border-right: 2px solid rgb(238, 103, 238);     box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(254,211,135,1) 15px 15px;
+    
+}
+
+.btn-save {
+    margin: 10px;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    background: rgb(255, 255, 255);
+    color: blueviolet;
+    border-radius: .5rem;
+    border-bottom: 2px solid blueviolet;
+    border-right: 2px solid blueviolet;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    transition-duration: 1s;
+    transition-property: border-top,
+    border-left,
+    border-bottom,
+    border-right,
+    box-shadow;
+    
+    
+}           
+
+.btn-save:hover {
+    border-top: 2px solid blueviolet;
+    border-left: 2px solid blueviolet;
+    border-bottom: 2px solid rgb(238, 103, 238);
+    border-right: 2px solid rgb(238, 103, 238);
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(254,211,135,1) 15px 15px;    
+}
+
+h1 {
+    /* position: absolute;
+    top: 6rem; */
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    color: rgba(254,211,135,1);
+    font-family: "Jersey 15", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3rem;
+    letter-spacing: 1px;
+}
+
+
+
+label {
+    display:none;
+}
+
+input, select, textarea {
+
+    padding: 0.5rem;
+    border-radius: 6px;
+    box-shadow: inset 3px black;
+    }
+/* 
+input[type='file']{
+ margin: 0;
+ position: absolute;
+ top: 37%;
+ left: 50%;
+ -ms-transform: translate(-50%, -50%);
+ transform: translate(-50%, -50%);
+    
+} */
+     
+    
+/* Remove File upload margin for register page */
+.custom-width input[type='file']{
+    margin: 0;
+}
+  

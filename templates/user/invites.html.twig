@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('css/user_global.css')}}">
+<link rel="stylesheet" href="{{asset('css/user_invites.css')}}">
+{% endblock %}
+{% block body %}
+<div class="dash_container">
+    <div class="text">
+        <h1>Oh, Hello {{username}}!</h1>
+    </div>
+    
+    <div class="card">
+        <a href="{{path('app_user_index')}}" class="active">
+        <span>Dashboard</span></a>
+        <a href="{{path('app_user_gamenights')}}#profile">
+           <span>My Gamenights</span></a>
+        <a href="{{path('app_user_gamenights_part')}}#part"> <span>Attended Gamenights</span></a>
+        <a href="{{path('app_user_invites')}}#invite"><span>Invites</span></a>
+        <a href="{{path('app_user_change_pw')}}#pw"><span>Change Password</span></a>
+        <a href="{{path('app_user_edit')}}#edit"><span>Edit Account</span></a>
+    </div>
+
+</div>
+<div class="invite_container" id="invite">
+    <div class="invite_text">
+        <h3>Invites</h3>
+        <table>
+            {% for invite in user_invites %}
+            {% if invite.type == 'invite' %}
+            <tbody>
+                <td>{{invite.username}}</td>
+                <td>{{invite.location}}</td>
+                <td style="display:none">{{invite.status}}</td>
+                {% if invite.status == 'pending' %}
+                <td>
+                    <form action="">
+                        <input type="submit" value="Accept" name="accept">
+                        <input type="submit" value="Decline"
+                        name="decline">
+                        <input type="hidden" name="id" value="{{invite.id}}">
+                        <input type="hidden" name="gnID"
+                        value="{{invite.gnID}}">
+                        <input type="hidden" name="user_id" value="{{current_user_id}}">
+                    </form>
+                    <a href="../gamenight/{{invite.gnID}}">View</a>
+                </td>
+                {% else %}
+                <td><a href="../gamenight/{{invite.gnID}}">View</a></td>
+                {% endif %}
+            </tbody>
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+    <div class="invite_text">
+
+        <h3>Requests</h3>
+        <table>
+            <tbody>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tbody>
+            {% for request in user_requests %}
+            {% if request.type == 'request' and request.inviter == current_user_id %}
+            <tbody>
+                <td>{{request.inveuser}}</td>
+                <td>{{request.location}}</td>
+                <td style="display: none">{{request.status}}</td>
+                {% if request.status == 'pending' %}
+                <td>
+                    <form action=""><input type="submit" value="Accept" name="accept"><input type="submit" value="Decline"
+                            name="decline"><input type="hidden" name="id" value="{{request.id}}"><input type="hidden"
+                            name="gnID" value="{{request.gnID}}"><input type="hidden" name="user_id" value="{{request.inveid}}">
+                    </form>
+                    <a href="../gamenight/{{request.gnID}}">View</a>
+                </td>
+                {% else %}
+                <td><a href="../gamenight/{{request.gnID}}">View</a></td>
+                {% endif %}
+            </tbody>
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+   
+</div>
+{% endblock %}

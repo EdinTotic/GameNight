@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('css/user_global.css')}}">
+<link rel="stylesheet" href="{{ asset('css/user_profile.css' ) }}">
+{% endblock %}
+{% block body %}
+<div class="dash_container">
+    <div class="text">
+        <h1>Oh, Hello {{username}}!</h1>
+    </div>
+
+
+    <div class="card">
+        <a href="{{path('app_user_index')}}" class="active">
+        <span>Dashboard</span></a>
+        <a href="{{path('app_user_gamenights')}}#profile">
+           <span>My Gamenights</span></a>
+        <a href="{{path('app_user_gamenights_part')}}#part"> <span>Attended Gamenights</span></a>
+        <a href="{{path('app_user_invites')}}#invite"><span>Invites</span></a>
+        <a href="{{path('app_user_change_pw')}}#pw"><span>Change Password</span></a>
+        <a href="{{path('app_user_edit')}}#edit"><span>Edit Account</span></a>
+    </div>
+</div>
+<div class="container" id="profile">
+    <div class="profile_container">
+        <div class="name">
+            <h3>{{username}}</h3>
+            <div class="tags">
+                {# {% for tag in tags %}
+                <span>#{{tag.name}}</span>
+                {% endfor %} #}
+            </div>
+
+
+            <div class="image">
+                <img src="{{ asset('/uploads/') ~ user_image}}" alt="">
+                {# <img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png" alt=""> #}
+            </div>
+        </div>
+        <div class="details">
+            <div class="description">
+                {# <p>{{gamenight.gnDescription|raw}}</p> #}
+                <p>My name is {{first_name}} {{last_name}}.
+                    <br>
+                    Happy to host and join you for fun Gamenights.
+                </p>
+            </div>
+            <div class="gamenight_details">
+                <div class="div">
+                    <h5>What?</h5>
+                    <h5>When?</h5>
+                    <h5>Where?</h5>
+                </div>
+
+                <table>
+                    {% for gn in user_game_nights %}
+                    <tbody>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tbody>
+                    <tbody>
+                        <td>{{gn.gnName}}</td>
+                        <td>{{gn.date | date("d.m.Y, H:i")}}</td>
+                        <td>{{gn.location}}</td>
+                        <td><a href="../gamenight/{{gn.id}}">View</a></td>
+                        <td><a href="../gamenight/{{gn.id}}/edit">Edit</a></td>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

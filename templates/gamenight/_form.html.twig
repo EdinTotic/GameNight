@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{% if user_id is defined %}
+<input type="hidden" name="user_id" value="{{ user_id }}">
+{% endif %}
+<button class="btn-save">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

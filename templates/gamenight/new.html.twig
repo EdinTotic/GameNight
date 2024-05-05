@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}  <link rel="stylesheet" href="{{asset('css/gamenight_new.css')}}">{% endblock %}
+
+{% block javascript %}
+<script>
+$(document).ready(function () {
+   google.maps.event.addDomListener(window, 'load', initialize);
+});
+
+function initialize() {
+    var input = document.getElementById('gamenight_location');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    //input.addEventListener("change", (e)=>{
+    //    console.log(e);
+    //    console.log(input.value);
+    //});
+}
+
+</script>
+{% endblock %}
+
+{% block title %}New Gamenight{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Create new Gamenight</h1>
+    {{ include('gamenight/_form.html.twig') }}    
+</div>
+{% endblock %}

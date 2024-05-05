@@ -1,0 +1,175 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gamenight{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/gamenight_details.css' ) }}">
+{% endblock %}
+{% block body %}
+
+<div class="sl-container">
+    <div class="sl-detailsContainer sl-details">
+        <div>
+            <h1>{{gamenight.gnName}}</h1>
+            <div class="sl-tags">
+                {% for tag in tags %}
+                <span>#{{tag.name}}</span>
+                {% endfor %}
+            </div>
+            <img src="{{asset('/uploads/') ~ gamenight.gnImage}}" alt="">
+            <div class="sl-desc">
+                <h3>Description</h3>
+                <p>{{gamenight.gnDescription|raw}}</p>
+            </div>
+        </div>
+        <div class="sl-details-container">
+            <div class="sl-details-info">
+                <h3>Time & Location</h3>
+                <p>{{ gamenight.date ? gamenight.date|date('d.m.Y H:i') : '' }}</p>
+                <p>{{ gamenight.location }}</p>
+                <div class="map-container">
+                    <iframe width="300" height="300" frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCra3nOT8dDv0eJdkjrSFvs34V6KpZ-YSo&q={{ gamenight.location }}"
+                        allowfullscreen></iframe>
+                </div>
+
+                <h3>Creator</h3>
+                <p>{{creator_username}}</p>
+                <h3>Game</h3>
+                <p>{{game.name}}</p>
+            </div>
+            <div class="sl-details-info">
+                <h3>Bring Snacks</h3>
+                {% if is_part or creator_id == current_id %}
+                <form method="get">
+                    <select name="type" id="">
+                        <option value="" disabled="disabled" selected>Choose a snack type</option>
+                        {% for snacktype in snacktypes %}
+                        <option value="{{snacktype}}">{{snacktype|capitalize}}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="snack" id="">
+                        <option value="" disabled="disabled" selected>Choose a Snack</option>
+                        {% for snack in snacks %}
+                        <option value="{{snack.id}}" sl-attr="{{snack.type}}" style="display: none;">
+                            {{snack.name|capitalize}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="number" name="qty" placeholder="Quantity">
+                    <input type="submit" value="Add snack" name="add_snack">
+                </form>
+                <p>{{snackmessage}}</p>
+                <script>
+                    jQuery(document).ready(function ($) {
+                        $('select[name="type"]').change(function () {
+                            let filter = $('select[name="type"]').val();
+                            $('select[name="snack"] option').filter(function () {
+                                $(this).toggle($(this).attr("sl-attr") == filter);
+                            });
+                        })
+                    });
+                </script>
+                {% else %}
+                <p>You have to be a participant to add snacks</p>
+                {% endif %}
+            </div>
+            <div class="sl-details-info">
+                {% if creator_id == current_id %}
+                <h3>Invite a friend</h3>
+                <form method="get">
+                    <input type="text" name="invite_user" placeholder="Username or E-Mail">
+                    <input type="submit" value="Invite" name="invite">
+                </form>
+                <p>{{message}}</p>
+                {% else %}
+                <h3>Request to join this game night</h3>
+                <form method="get">
+                    <input type="submit" value="Request to join" name="request">
+                </form>
+                <p>{{message}}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="sl-details">
+        <h3>Snack List</h3>
+        <table class="table table-striped custom-table">
+            <thead>
+                <tr>
+                    <th scope="col">Snack</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">User</th>
+                </tr>
+            </thead>
+            {% for snack in gamenight_snacks %}
+            <tr scope="row">
+                <td>{{snack.name|capitalize}}</td>
+                <td>{{snack.type|capitalize}}</td>
+                <td>{{snack.quantity}}</td>
+                <td>{{snack.username|capitalize}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="sl-details">
+        {% if creator_id == current_id %}
+        <h3>Add Tags to your game night</h3>
+        <form method="get">
+            <ul class="tags"
+                data-prototype="&lt;div&gt;&lt;div id=&quot;task_tags___name__&quot;&gt;&lt;div&gt;&lt;input type=&quot;text&quot; id=&quot;task_tags___name___name&quot; name=&quot;tags[__name__]&quot; placeholder=&quot;Add tag&quot; required=&quot;required&quot; maxlength=&quot;255&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;"
+                data-index="0">
+            </ul>
+            <input type="submit" value="Save" name="add_tag" class="sl-savetags">
+        </form>
+        <script>
+            // document.querySelector("..add_tag_list").removeAttribute("href");
+            const addTagLink = document.createElement('a')
+            addTagLink.classList.add('add_tag_list')
+            // addTagLink.href = '#'
+            addTagLink.innerText = 'Click to add a tag'
+            addTagLink.dataset.collectionHolderClass = 'tags'
+
+            const newLinkLi = document.createElement('li').append(addTagLink)
+
+            const collectionHolder = document.querySelector('ul.tags')
+            collectionHolder.appendChild(addTagLink)
+
+            const addFormToCollection = (e) => {
+                document.querySelector('.sl-savetags').style.display = 'block';
+                const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+                const item = document.createElement('li');
+
+                item.innerHTML = collectionHolder
+                    .dataset
+                    .prototype
+                    .replace(
+                        /__name__/g,
+                        collectionHolder.dataset.index
+                    );
+
+                collectionHolder.appendChild(item);
+
+                collectionHolder.dataset.index++;
+            }
+
+            addTagLink.addEventListener("click", addFormToCollection)
+        </script>
+        <style>
+            li * {
+                display: inline-block;
+                margin: 0 10px;
+            }
+        </style>
+        <div class="sl-useredit">
+            <a href="{{ path('app_gamenight_edit', {'id': gamenight.id}) }}">Edit</a>
+            {{ include('gamenight/_delete_form.html.twig') }}
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+
+
+
+{% endblock %}

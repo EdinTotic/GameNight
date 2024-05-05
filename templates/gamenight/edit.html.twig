@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}  <link rel="stylesheet" href="{{asset('css/gamenight_new.css')}}">{% endblock %}
+
+{% block title %}Edit Gamenight{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <h1>Edit Gamenight</h1>
+    
+    {{ include('gamenight/_form.html.twig', {'button_label': 'Update'}) }}
+    
+    
+    {{ include('gamenight/_delete_form.html.twig') }}
+</div>
+{% endblock %}

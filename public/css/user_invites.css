@@ -1,0 +1,168 @@
+.invite_container {
+    padding: 2rem;
+    background-color: #000;
+    color: #fff;
+    height: 100vH;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.invite_text {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: -2px 3px 4px 1px rgba(254, 211, 135, 0.75);
+}
+
+.hidden {
+    display: none;
+}
+
+h3 {
+    font-family: "Jersey 15", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3rem;
+    letter-spacing: 1px;
+    color: rgba(254, 211, 135);
+}
+
+table {
+    color: white;
+    width: 100%;
+}
+
+th {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+
+}
+tr {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    gap: 0.8rem;
+}
+
+form {
+    width: 5rem;
+}
+
+input {
+    padding: 0.5rem 1rem;
+    background: rgb(255, 255, 255);
+    color: blueviolet;
+    border-radius: .5rem;
+    border-bottom: 2px solid blueviolet;
+    border-right: 2px solid blueviolet;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    transition-duration: 1s;
+    transition-property: border-top,
+    border-left,
+    border-bottom,
+    border-right,
+    box-shadow;
+    font-family: "Lugrasimo", cursive;
+    font-weight: 400;
+    font-size: 0.5rem;
+    font-style: normal;
+}           
+    
+input:hover {
+    border-top: 2px solid blueviolet;
+    border-left: 2px solid blueviolet;
+    border-bottom: 2px solid rgb(238, 103, 238);
+    border-right: 2px solid rgb(238, 103, 238);     box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(254,211,135,1) 15px 15px;
+        
+} 
+
+td {
+    display: flex;
+    gap: 1rem;
+    font-size: 1rem;
+}
+form {
+    display: flex;
+}
+tbody {
+    display: flex;
+    justify-content: space-around;
+}
+td a {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    text-align: center;
+    background: rgb(255, 255, 255);
+    color: blueviolet;
+    border-radius: .5rem;
+    border-bottom: 2px solid blueviolet;
+    border-right: 2px solid blueviolet;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    transition-duration: 1s;
+    transition-property: border-top,
+    border-left,
+    border-bottom,
+    border-right,
+    box-shadow;
+    font-family: "Lugrasimo", cursive;
+    font-weight: 400;
+    font-size: 0.5rem;
+    font-style: normal;
+    margin-left: 2rem;
+}           
+    
+td a:hover {
+    border-top: 2px solid blueviolet;
+    border-left: 2px solid blueviolet;
+    border-bottom: 2px solid rgb(238, 103, 238);
+    border-right: 2px solid rgb(238, 103, 238);     box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(254,211,135,1) 15px 15px;
+        
+} 
+
+
+
+/* END CARD CONTAINER */
+
+@media (min-width: 768px) {
+    .invite_container {
+        justify-content: space-around;
+        flex-direction: row;
+        gap: 1rem;
+    }
+    .invite_text {
+        padding: 1rem;
+        border-radius: 6px;
+        width: 30rem;
+        height: fit-content;
+    }
+}
+
+@media (min-width: 1024px) {
+    .invite_container {
+        justify-content: space-around;
+        flex-direction: row;
+    }
+    .invite_text {
+        padding: 1rem;
+        border-radius: 6px;
+        width: 60rem;
+        height: fit-content;
+    }
+    td {
+        font-size: 1.5rem;
+    }
+    input {
+    font-size: 1rem;
+    }
+    td a {
+        font-size: 1rem;
+        margin-left: 5rem;
+    }
+}
